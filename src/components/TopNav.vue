@@ -13,7 +13,7 @@
   export default {
     name: 'TopNav',
     setup() {
-      const menuVisible = inject<Ref<boolean>>('xxx')
+      const menuVisible = inject<Ref<boolean>>('menuVisible')
       const onClickToggleMenu = () => {
         menuVisible!.value = !menuVisible!.value
       }

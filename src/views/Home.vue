@@ -1,8 +1,8 @@
 <template>
   <div>
-    <top-nav></top-nav>
+    <Topnav />
     <div class="banner">
-      <h1>IVue</h1>
+      <h1>IVue3</h1>
       <h2>一个厉害的 UI 框架</h2>
       <p class="actions">
         <a href="https://github.com">GitHub</a>
@@ -11,12 +11,11 @@
     </div>
   </div>
 </template>
-<script>
-  import TopNav from '../components/TopNav.vue'
+<script lang="ts">
+  import Topnav from "../components/Topnav.vue";
   export default {
-    name: 'Home',
-    components: { TopNav }
-  }
+    components: { Topnav },
+  };
 </script>
 <style lang="scss" scoped>
   .banner {
