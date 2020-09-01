@@ -5,28 +5,30 @@
       <li>菜单1</li>
       <li>菜单2</li>
     </ul>
-    <span class="toggleAside" @click="onClickToggleMenu"></span>
+    <span class="toggleAside" @click="toggleMenu"></span>
   </div>
 </template>
 <script lang="ts">
-  import { inject, Ref } from 'vue'
+  import { inject, Ref } from "vue";
   export default {
-    name: 'TopNav',
     setup() {
-      const menuVisible = inject<Ref<boolean>>('menuVisible')
-      const onClickToggleMenu = () => {
-        menuVisible!.value = !menuVisible!.value
-      }
-      return {onClickToggleMenu}
-    }
-  }
+      const menuVisible = inject<Ref<boolean>>("menuVisible"); // get
+      const toggleMenu = () => {
+        menuVisible!.value = !menuVisible!.value;
+      };
+      return { toggleMenu };
+    },
+  };
 </script>
 <style lang="scss" scoped>
   .topnav {
     background: pink;
     display: flex;
     padding: 16px;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 10;
     justify-content: center;
     align-items: center;
@@ -52,10 +54,16 @@
       transform: translateY(-50%);
       display: none;
     }
-    @media (max-width:500px) {
-      > .menu{display: none;}
-      > .logo{margin: 0 auto;}
-      > .toggleAside { display: inline-block;}
+    @media (max-width: 500px) {
+      > .menu {
+        display: none;
+      }
+      > .logo {
+        margin: 0 auto;
+      }
+      > .toggleAside {
+        display: inline-block;
+      }
     }
   }
 </style>
