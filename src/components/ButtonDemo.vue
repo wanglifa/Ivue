@@ -1,13 +1,15 @@
 <template>
   <div>
-    Button 示例
+    <Button>你好</Button>
   </div>
 </template>
 <script lang="ts">
+  import Button from '../lib/Button.vue'
   export default {
     name: 'Switch',
     setup() {
 
-    }
+    },
+    components: { Button }
   }
 </script>

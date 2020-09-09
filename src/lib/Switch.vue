@@ -5,12 +5,12 @@
   interface Prop {
     value: boolean;
   }
-  import { ref } from 'vue'
+  import { ref, SetupContext } from 'vue'
   export default {
     props: {
       value: Boolean
     },
-    setup(props: Prop, context: any) {
+    setup(props: Prop, context: SetupContext) {
       const toggle = () => {
         context.emit('update:value', !props.value)
       }
