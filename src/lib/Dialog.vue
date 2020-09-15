@@ -1,23 +1,65 @@
 <template>
-  <div class="ivue3-dialog-overlay"></div>
-  <div class="ivue3-dialog-wrapper">
-    <div class="ivue3-dialog">
-      <header>标题</header>
-      <main>
-        <p>第一行字</p>
-        <p>第二行字</p>
-      </main>
-      <footer>
-        <Button level="main">OK</Button>
-        <Button>Cancel</Button>
-      </footer>
+  <template v-if="visible">
+    <div class="ivue3-dialog-overlay"
+      @click="onClickOverlay"
+    ></div>
+    <div class="ivue3-dialog-wrapper">
+      <div class="ivue3-dialog">
+        <header>
+          标题
+          <span @click="onClose" class="ivue3-dialog-close"></span>
+        </header>
+        <main>
+          <p>第一行字</p>
+          <p>第二行字</p>
+        </main>
+        <footer>
+          <Button level="main" @click="ok">OK</Button>
+          <Button @click="cancel">Cancel</Button>
+        </footer>
+      </div>
     </div>
-  </div>
+  </template>
 </template>
 <script lang="ts">
   import Button from './Button.vue'
+  import {SetupContext} from "vue";
+
   export default {
-    components: {Button}
+    components: {Button},
+    props: {
+      visible: {
+        type: Boolean,
+        default: false
+      },
+      closeOnClickOverlay: {
+        type: Boolean,
+        default: true
+      },
+      ok: {
+        type: Function
+      }
+    },
+    setup(props: any, context: SetupContext) {
+      const onClose = () => {
+        context.emit('update:visible', !props.visible)
+      }
+      const onClickOverlay = () => {
+        if (props.closeOnClickOverlay) {
+          onClose()
+        }
+      }
+      const ok = () => {
+        if (props.ok?.() !== false) {
+          onClose()
+        }
+      }
+      const cancel = () => {
+        context.emit('cancel')
+        onClose()
+      }
+      return {onClose, onClickOverlay, ok, cancel}
+    }
   }
 </script>
 <style lang="scss">
