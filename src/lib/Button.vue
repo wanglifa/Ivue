@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button :class="`theme-${theme}`" class="ivue3-button">
+    <button :class="`ivue3-theme-${theme}`" class="ivue3-button">
       <slot/>
     </button>
   </div>
@@ -16,7 +16,7 @@
     }
   }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   $h: 32px;
   $border-color: #d9d9d9;
   $color: #333;

@@ -1,5 +1,5 @@
 <template>
-  <button @click="toggle" :class="{checked: value}"><span></span></button>
+  <button @click="toggle" :class="{checked: value}" class="ivue3-switch"><span></span></button>
 </template>
 <script lang="ts">
   interface Prop {
@@ -18,10 +18,10 @@
     }
   }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   $h: 22px;
   $h2: $h - 4px;
-  button{
+  .ivue3-switch{
     height: $h;
     width: $h*2;
     border: none;
@@ -40,7 +40,7 @@
     border-radius: $h2 / 2;
     transition: all 250ms;
   }
-  button{
+  .ivue3-switch{
     &.checked {
       background: #1890ff;
       > span {
