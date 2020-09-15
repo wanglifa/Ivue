@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <button :class="classes" class="ivue3-button">
-      <slot/>
-    </button>
-  </div>
+  <button :class="classes" class="ivue3-button">
+    <slot/>
+  </button>
 </template>
 <script lang="ts">
   import {SetupContext, computed} from 'vue'
@@ -16,14 +14,19 @@
       size: {
         type: String,
         default: 'middle'
+      },
+      level: {
+        type: String,
+        default: 'normal'
       }
     },
     setup(props: any) {
-      const {theme, size} = props
+      const {theme, size, level} = props
       const classes = computed(() => {
         return {
           [`ivue3-theme-${theme}`]: theme,
-          [`ivue3-size-${size}`]: size
+          [`ivue3-size-${size}`]: size,
+          [`ivue3-level-${level}`]: level
         }
       })
       return {classes}
@@ -36,6 +39,7 @@
   $color: #333;
   $blue: #40a9ff;
   $radius: 4px;
+  $red: red;
   .ivue3-button {
     box-sizing: border-box;
     height: $h;
@@ -50,6 +54,7 @@
     border: 1px solid $border-color;
     border-radius: $radius;
     box-shadow: 0 1px 0 fade-out(black, 0.95);
+    transition: background 250ms;
     & + & {
       margin-left: 8px;
     }
@@ -64,32 +69,79 @@
     &::-moz-focus-inner {
       border: 0;
     }
-    &.ivue3-theme-link{
+    &.ivue3-theme-link {
       border-color: transparent;
       box-shadow: none;
       color: $blue;
-      &:hover,&:focus{
+      &:hover,
+      &:focus {
         color: lighten($blue, 10%);
       }
     }
-    &.ivue3-theme-text{
+    &.ivue3-theme-text {
       border-color: transparent;
       box-shadow: none;
       color: inherit;
-      &:hover,&:focus{
-        background: darken(white, 5%);;
+      &:hover,
+      &:focus {
+        background: darken(white, 5%);
       }
     }
-    &.ivue3-theme-button{
-      &.ivue3-size-big{
-        font-size: 24px;
-        height: 48px;
-        padding: 0 16px
+    &.ivue3-size-big {
+      font-size: 24px;
+      height: 48px;
+      padding: 0 16px;
+    }
+    &.ivue3-size-small {
+      font-size: 12px;
+      height: 20px;
+      padding: 0 4px;
+    }
+    &.ivue3-theme-button {
+      &.ivue3-level-main {
+        background: $blue;
+        color: white;
+        border-color: $blue;
+        &:hover,
+        &:focus {
+          background: darken($blue, 10%);
+          border-color: darken($blue, 10%);
+        }
       }
-      &.ivue3-size-small{
-        font-size: 12px;
-        height: 20px;
-        padding: 0 4px;
+      &.ivue3-level-danger {
+        background: $red;
+        border-color: $red;
+        color: white;
+        &:hover,
+        &:focus {
+          background: darken($red, 10%);
+          border-color: darken($red, 10%);
+        }
+      }
+    }
+    &.ivue3-theme-link {
+      &.ivue3-level-danger {
+        color: $red;
+        &:hover,
+        &:focus {
+          color: darken($red, 10%);
+        }
+      }
+    }
+    &.ivue3-theme-text {
+      &.ivue3-level-main {
+        color: $blue;
+        &:hover,
+        &:focus {
+          color: darken($blue, 10%);
+        }
+      }
+      &.ivue3-level-danger {
+        color: $red;
+        &:hover,
+        &:focus {
+          color: darken($red, 10%);
+        }
       }
     }
   }
