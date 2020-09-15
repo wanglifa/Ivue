@@ -18,6 +18,10 @@
       level: {
         type: String,
         default: 'normal'
+      },
+      disabled: {
+        type: Boolean,
+        default: false
       }
     },
     setup(props: any) {
@@ -40,6 +44,7 @@
   $blue: #40a9ff;
   $radius: 4px;
   $red: red;
+  $grey: grey;
   .ivue3-button {
     box-sizing: border-box;
     height: $h;
@@ -142,6 +147,21 @@
         &:focus {
           color: darken($red, 10%);
         }
+      }
+    }
+    &.ivue3-theme-button {
+      &[disabled] {
+        cursor: not-allowed;
+        color: $grey;
+        &:hover {
+          border-color: $grey;
+        }
+      }
+    }
+    &.ivue3-theme-link, &.ivue3-theme-text {
+      &[disabled] {
+        cursor: not-allowed;
+        color: $grey;
       }
     }
   }
