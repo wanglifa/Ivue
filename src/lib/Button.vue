@@ -1,18 +1,32 @@
 <template>
   <div>
-    <button :class="`ivue3-theme-${theme}`" class="ivue3-button">
+    <button :class="classes" class="ivue3-button">
       <slot/>
     </button>
   </div>
 </template>
 <script lang="ts">
-  import {SetupContext} from 'vue'
+  import {SetupContext, computed} from 'vue'
   export default {
     props: {
       theme: {
         type: String,
         default: 'button'
+      },
+      size: {
+        type: String,
+        default: 'middle'
       }
+    },
+    setup(props: any) {
+      const {theme, size} = props
+      const classes = computed(() => {
+        return {
+          [`ivue3-theme-${theme}`]: theme,
+          [`ivue3-size-${size}`]: size
+        }
+      })
+      return {classes}
     }
   }
 </script>
@@ -64,6 +78,18 @@
       color: inherit;
       &:hover,&:focus{
         background: darken(white, 5%);;
+      }
+    }
+    &.ivue3-theme-button{
+      &.ivue3-size-big{
+        font-size: 24px;
+        height: 48px;
+        padding: 0 16px
+      }
+      &.ivue3-size-small{
+        font-size: 12px;
+        height: 20px;
+        padding: 0 4px;
       }
     }
   }
