@@ -1,24 +1,26 @@
 <template>
-  <template v-if="visible">
-    <div class="ivue3-dialog-overlay"
-      @click="onClickOverlay"
-    ></div>
-    <div class="ivue3-dialog-wrapper">
-      <div class="ivue3-dialog">
-        <header>
-          {{title}}
-          <span @click="onClose" class="ivue3-dialog-close"></span>
-        </header>
-        <main>
-          <slot/>
-        </main>
-        <footer>
-          <Button level="main" @click="ok">OK</Button>
-          <Button @click="cancel">Cancel</Button>
-        </footer>
+  <Teleport to="body">
+    <template v-if="visible">
+      <div class="ivue3-dialog-overlay"
+           @click="onClickOverlay"
+      ></div>
+      <div class="ivue3-dialog-wrapper">
+        <div class="ivue3-dialog">
+          <header>
+            <slot name="title"/>
+            <span @click="onClose" class="ivue3-dialog-close"></span>
+          </header>
+          <main>
+            <slot name="content"/>
+          </main>
+          <footer>
+            <Button level="main" @click="ok">OK</Button>
+            <Button @click="cancel">Cancel</Button>
+          </footer>
+        </div>
       </div>
-    </div>
-  </template>
+    </template>
+  </Teleport>
 </template>
 <script lang="ts">
   import Button from './Button.vue'
@@ -27,10 +29,6 @@
   export default {
     components: {Button},
     props: {
-      title: {
-        type: String,
-        default: '提示'
-      },
       visible: {
         type: Boolean,
         default: false

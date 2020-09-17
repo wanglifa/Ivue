@@ -4,8 +4,13 @@
     <h1>示例1</h1>
     <Button @click="onClickToggle">Dialog</Button>
     <Dialog v-model:visible="x" :ok="f1" @cancel="f2" title="我美吗">
-      <p>你好呀</p>
-      <p>小姐姐</p>
+      <template v-slot:title>
+        <h1>哈哈哈</h1>
+      </template>
+      <template v-slot:content>
+        <p>你好呀</p>
+        <p>小姐姐</p>
+      </template>
     </Dialog>
   </div>
 </template>
