@@ -6,12 +6,11 @@
     <div class="ivue3-dialog-wrapper">
       <div class="ivue3-dialog">
         <header>
-          标题
+          {{title}}
           <span @click="onClose" class="ivue3-dialog-close"></span>
         </header>
         <main>
-          <p>第一行字</p>
-          <p>第二行字</p>
+          <slot/>
         </main>
         <footer>
           <Button level="main" @click="ok">OK</Button>
@@ -23,11 +22,15 @@
 </template>
 <script lang="ts">
   import Button from './Button.vue'
-  import {SetupContext} from "vue";
+  import {ref, SetupContext} from "vue";
 
   export default {
     components: {Button},
     props: {
+      title: {
+        type: String,
+        default: '提示'
+      },
       visible: {
         type: Boolean,
         default: false
@@ -41,6 +44,7 @@
       }
     },
     setup(props: any, context: SetupContext) {
+      const test = ref
       const onClose = () => {
         context.emit('update:visible', !props.visible)
       }
