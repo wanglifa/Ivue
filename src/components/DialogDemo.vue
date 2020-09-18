@@ -12,12 +12,15 @@
         <p>小姐姐</p>
       </template>
     </Dialog>
+    <h2>示例2</h2>
+    <Button @click="showDialog">showDialog</Button>
   </div>
 </template>
 <script lang="ts">
   import Dialog from '../lib/Dialog.vue'
   import Button from '../lib/Button.vue'
   import {ref} from "vue";
+  import { openDialog } from '../lib/openDialog';
 
   export default {
     name: 'Switch',
@@ -33,7 +36,10 @@
       const f2 = (): Boolean => {
         return true
       }
-      return {x, onClickToggle, f1, f2}
+      const showDialog = () => {
+        openDialog({title: '标题', content: '哈哈哈', closeOnClickOverlay: false})
+      }
+      return {x, onClickToggle, f1, f2, showDialog}
     }
   }
 </script>
