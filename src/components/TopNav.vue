@@ -4,7 +4,7 @@
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-logo2"></use>
       </svg>
-      IVUE3
+      IVue
     </div>
     <ul class="menu">
       <li>菜单1</li>
