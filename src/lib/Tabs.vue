@@ -15,7 +15,7 @@
   </div>
 </template>
 <script lang="ts">
-import {SetupContext, ref, computed, watch} from 'vue'
+import {SetupContext, ref, computed, watchEffect} from 'vue'
 import Tab from './Tab.vue'
 export default {
   props: {
@@ -27,6 +27,9 @@ export default {
     const defaults = context.slots.default()
     const titleArray: string[] = []
     const titleRefObject = {}
+    watchEffect(() => {
+      console.log('1')
+    })
     defaults.forEach((tag, index) => {
       if (tag.type !== Tab) {
         throw new Error('Tabs 子标签必须是 Tab')

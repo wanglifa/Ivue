@@ -1,6 +1,11 @@
 <template>
   <div class="topnav">
-    <div class="logo">LOGO</div>
+    <div class="logo">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-logo2"></use>
+      </svg>
+      IVUE3
+    </div>
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
@@ -21,8 +26,9 @@
   };
 </script>
 <style lang="scss" scoped>
+  $color: #007974;
   .topnav {
-    background: pink;
+    color: $color;
     display: flex;
     padding: 16px;
     position: fixed;
@@ -35,6 +41,14 @@
     > .logo {
       max-width: 6em;
       margin-right: auto;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      .icon {
+        width: 2em;
+        height: 2em;
+        margin-right: 12px;
+      }
     }
     > .menu {
       display: flex;
