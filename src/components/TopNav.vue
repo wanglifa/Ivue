@@ -1,11 +1,11 @@
 <template>
   <div class="topnav">
-    <div class="logo">
+    <router-link to="/" class="logo">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-logo2"></use>
       </svg>
       IVue
-    </div>
+    </router-link>
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
