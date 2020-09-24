@@ -10,12 +10,20 @@
       <li>菜单1</li>
       <li>菜单2</li>
     </ul>
-    <span class="toggleAside" @click="toggleMenu"></span>
+    <svg class="toggleAside" @click="toggleMenu" v-if="toggleMenuButtonVisible">
+      <use xlink:href="#icon-menu"></use>
+    </svg>
   </div>
 </template>
 <script lang="ts">
   import { inject, Ref } from "vue";
   export default {
+    props: {
+      toggleMenuButtonVisible: {
+        type: Boolean,
+        default: false
+      }
+    },
     setup() {
       const menuVisible = inject<Ref<boolean>>("menuVisible"); // get
       const toggleMenu = () => {
@@ -67,6 +75,7 @@
       top: 50%;
       transform: translateY(-50%);
       display: none;
+      background: fade-out(black, 0.9);
     }
     @media (max-width: 500px) {
       > .menu {
