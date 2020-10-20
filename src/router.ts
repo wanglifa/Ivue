@@ -12,7 +12,7 @@ import Intro from './views/Intro.vue'
 import GetStart from './views/GetStart.vue'
 import Install from './views/Install.vue'
 const history = createWebHashHistory()
-const md = fileName => h(Markdown, { path: `../markdown/${fileName}.md`, key: fileName })
+const md = (fileName: string) => h(Markdown, { path: `../markdown/${fileName}.md`, key: fileName })
 export const router = createRouter({
   history,
   routes: [
