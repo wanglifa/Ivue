@@ -29,16 +29,16 @@
     border-radius: $h/2;
     position: relative;
     cursor: pointer;
-  }
-  span{
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    height: $h2;
-    width: $h2;
-    background:white;
-    border-radius: $h2 / 2;
-    transition: all 250ms;
+    span{
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      height: $h2;
+      width: $h2;
+      background:white;
+      border-radius: $h2 / 2;
+      transition: all 250ms;
+    }
   }
   .ivue3-switch{
     &.checked {
