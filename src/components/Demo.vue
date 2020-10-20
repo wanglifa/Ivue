@@ -8,7 +8,7 @@
       <Button>查看代码</Button>
     </div>
     <div class="demo-code">
-      <pre class="language-html" v-html="Prism.highlight(component.__sourceCode, Prism.languages.html, 'html')" />
+      <pre class="language-html" v-html="html" />
     </div>
   </div>
 </template>
@@ -20,6 +20,9 @@ const Prism = (window as any).Prism
 import {
   ref
 } from 'vue'
+interface Prop {
+  component: any;
+}
 export default {
   props: {
     component: Object
@@ -27,11 +30,13 @@ export default {
   components: {
     Button
   },
-  setup() {
+  setup(props: Prop) {
     const bool = ref(false)
+    const html = Prism.highlight(props.component.__sourceCode, Prism.languages.html, 'html')
     return {
       bool,
-      Prism
+      Prism,
+      html
     }
   }
 }
