@@ -7,26 +7,27 @@
     </div>
     <i class="ivue3-tabs-line" :style="{width: selectTitlePosition()?.width + 'px', left: selectTitlePosition()?.left + 'px'}"></i>
     <div class="ivue3-tabs-content">
-      <template v-for="(tab, index) in defaults" :key="index">
-        <component :is="defaults[currentIndex]" class="ivue3-tabs-content-item"
-        ></component>
-      </template>
+      <component :is="defaults[currentIndex]" class="ivue3-tabs-content-item"
+      ></component>
     </div>
   </div>
 </template>
 <script lang="ts">
-import {SetupContext, ref, computed, watchEffect} from 'vue'
+import {SetupContext, ref, computed, watchEffect, Ref} from 'vue'
 import Tab from './Tab.vue'
+interface Title {
+  [k: string]: Ref;
+}
 export default {
   props: {
     defaultActiveKey: {
       type: String
     }
   },
-  setup(props, context: SetupContext) {
-    const defaults = context.slots.default()
+  setup(props: any, context: SetupContext) {
+    const defaults = context.slots.default!()
     const titleArray: string[] = []
-    const titleRefObject = {}
+    const titleRefObject: Title = {}
     watchEffect(() => {
       console.log('1')
     })
@@ -34,15 +35,15 @@ export default {
       if (tag.type !== Tab) {
         throw new Error('Tabs 子标签必须是 Tab')
       }
-      if (tag.props.title) {
+      if (tag.props?.title) {
         titleArray.push(tag.props.title)
       }
-      titleRefObject[`titleRef${index + 1}`] = ref<HTMLElement>(null)
+      titleRefObject[`titleRef${index + 1}`] = ref<HTMLElement | null>(null)
     })
     const currentIndex = computed(() => {
       let initIndex = 0
       defaults.forEach((tag, index) => {
-        if (tag.props.key === props.defaultActiveKey) {
+        if (tag.props?.key === props.defaultActiveKey) {
           initIndex = index
         }
       })
@@ -55,7 +56,7 @@ export default {
       }
     }
     const onClickTab = (index: number) => {
-      context.emit('update:defaultActiveKey', defaults[index].props.key)
+      context.emit('update:defaultActiveKey', defaults[index].props?.key)
     }
     return {
       defaults,
