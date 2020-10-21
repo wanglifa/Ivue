@@ -1,45 +1,22 @@
 <template>
-  <div>
-    <div>Dialog示例</div>
-    <h1>示例1</h1>
-    <Button @click="onClickToggle">Dialog</Button>
-    <Dialog v-model:visible="x" :ok="f1" @cancel="f2" title="我美吗">
-      <template v-slot:title>
-        <h1>哈哈哈</h1>
-      </template>
-      <template v-slot:content>
-        <p>你好呀</p>
-        <p>小姐姐</p>
-      </template>
-    </Dialog>
-    <h2>示例2</h2>
-    <Button @click="showDialog">showDialog</Button>
-  </div>
+  <div>Dialog 示例</div>
+  <Demo :component="Dialog1Demo" />
+  <Demo :component="Dialog2Demo" />
 </template>
-<script lang="ts">
-  import Dialog from '../lib/Dialog.vue'
-  import Button from '../lib/Button.vue'
-  import {ref} from "vue";
-  import { openDialog } from '../lib/openDialog';
 
-  export default {
-    name: 'Switch',
-    components: {Dialog, Button},
-    setup() {
-      const x = ref(false)
-      const onClickToggle = () => {
-        x.value = !x.value
-      }
-      const f1 = (): Boolean => {
-        return false
-      }
-      const f2 = (): Boolean => {
-        return true
-      }
-      const showDialog = () => {
-        openDialog({title: '标题', content: '哈哈哈', closeOnClickOverlay: false})
-      }
-      return {x, onClickToggle, f1, f2, showDialog}
+<script lang="ts">
+import Demo from './Demo.vue';
+import Dialog1Demo from './Dialog1.demo.vue';
+import Dialog2Demo from './Dialog2.demo.vue';
+export default {
+  components: {
+    Demo
+  },
+  setup() {
+    return {
+      Dialog1Demo,
+      Dialog2Demo
     }
   }
+}
 </script>

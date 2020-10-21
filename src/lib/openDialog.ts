@@ -1,9 +1,11 @@
 import Dialog from './Dialog.vue'
-import {createApp, h} from 'vue'
+import {createApp, h, VNode} from 'vue'
 interface Options {
-  title: string;
+  title: string | VNode;
   content: string;
-  closeOnClickOverlay: boolean;
+  closeOnClickOverlay?: boolean;
+  ok?: () => void;
+  cancel?: () => void;
 }
 export const openDialog = (options: Options) => {
   const {title, content, closeOnClickOverlay} = options
