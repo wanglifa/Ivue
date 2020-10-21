@@ -12,7 +12,7 @@ import {Button, Tabs, Switch, Dialog} from "Ivue-ui"
 ## Vue 单文件组件
 
 代码示例：
-```
+```js
 <template>
   <div>
     <Button>按钮</Button>

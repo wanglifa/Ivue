@@ -16,7 +16,7 @@
           </li>
         </ol>
         <h2>组件列表</h2>
-        <ol>
+        <ol class="component">
           <li>
             <router-link to="/doc/switch">Switch 组件</router-link>
           </li>
@@ -60,10 +60,7 @@ export default {
   >.content {
     flex-grow: 1;
     padding-top: 60px;
-    padding-left: 156px;
-    @media (max-width: 500px) {
-      padding-left: 0;
-    }
+    padding-left: calc(20% + 10px);
   }
 }
 .content {
@@ -79,29 +76,46 @@ export default {
   }
 }
 aside {
-  background: lightblue;
-  width: 150px;
+  background: #5C89EF;
+  width: 20%;
   padding: 16px 0;
   position: fixed;
   top: 0;
   left: 0;
   padding-top: 70px;
   height: 100%;
+  color: #fff;
   >h2 {
     margin-bottom: 4px;
-    padding: 0 16px;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #ddd;
   }
   >ol {
+    &.component {
+      padding-left: 12px;
+    }
     >li {
       >a {
         display: block;
-        padding: 4px 16px;
+        padding: 8px 16px;
         text-decoration: none;
+        font-size: 14px;
       }
       .router-link-active {
-        background: white;
+        background: #4176EA;
       }
     }
+  }
+}
+@media (max-width: 670px) {
+  .layout {
+    >.content {
+      padding-left: 0;
+    }
+  }
+  aside {
+    width: 150px;
   }
 }
 main {

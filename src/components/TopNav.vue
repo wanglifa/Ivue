@@ -7,8 +7,9 @@
       IVue
     </router-link>
     <ul class="menu">
-      <li>菜单1</li>
-      <li>菜单2</li>
+      <li>
+        <router-link to="/doc">文档</router-link>
+      </li>
     </ul>
     <svg class="toggleAside" @click="toggleMenu" v-if="toggleMenuButtonVisible">
       <use xlink:href="#icon-menu"></use>
@@ -34,7 +35,7 @@
   };
 </script>
 <style lang="scss" scoped>
-  $color: #007974;
+  $color: #3569dc;
   .topnav {
     color: $color;
     display: flex;

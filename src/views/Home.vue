@@ -3,12 +3,18 @@
     <div class="topnavAndBanner">
       <Topnav/>
       <div class="banner">
-        <h1>Ivue</h1>
+        <h1>IVue</h1>
         <h2>一个基于vue3的UI框架</h2>
         <p class="actions">
           <a href="https://github.com">GitHub</a>
-          <router-link to="/doc">开始</router-link>
+          <router-link to="/doc">开始使用</router-link>
         </p>
+        <div class="bg">
+          <img src="../assets/bg.png" alt="">
+        </div>
+        <div class="bg1">
+          <img src="../assets/bg.png" alt="">
+        </div>
       </div>
     </div>
     <div class="features">
@@ -46,11 +52,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-$green: #02bcb0;
-$border-radius: 4px;
-$color: #007974;
+$green: #346ade;
+$border-radius: 22px;
+$color: #3569dc;
 .topnavAndBanner {
-  background: linear-gradient(145deg, rgba(227, 255, 253, 1) 0%, rgba(183, 233, 230, 1) 100%);
+  background: linear-gradient(145deg, #A3BBEE 0%, #80a3ef 100%);
   clip-path: ellipse(80% 60% at 50% 40%);
 }
 .features {
@@ -103,10 +109,31 @@ $color: #007974;
 .banner {
   color: $color;
   padding: 100px 0;
+  position: relative;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  h2 {
+    padding: 12px 0;
+  }
+  .bg {
+    position: absolute;
+    left: -20px;
+    bottom: -20px;
+    opacity: .5;
+    img {
+      width: 200px;
+    }
+  }
+  .bg1 {
+    position: absolute;
+    right: -50px;
+    img {
+      max-width: 400px;
+    }
+  }
   >.actions {
     padding: 8px 0;
     a {
@@ -118,6 +145,11 @@ $color: #007974;
       border-radius: $border-radius;
       &:hover {
         text-decoration: none;
+      }
+      &:first-child {
+        background: none;
+        color: $green;
+        border: 1px solid $green;
       }
     }
   }
