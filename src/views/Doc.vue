@@ -70,6 +70,7 @@ export default {
   display: flex;
   >aside {
     flex-shrink: 0;
+    z-index: 10;
   }
   >main {
     flex-grow: 1;

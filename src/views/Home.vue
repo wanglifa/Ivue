@@ -3,7 +3,7 @@
     <div class="topnavAndBanner">
       <Topnav/>
       <div class="banner">
-        <h1>IVue</h1>
+        <h1>Ivue</h1>
         <h2>一个基于vue3的UI框架</h2>
         <p class="actions">
           <a href="https://github.com">GitHub</a>
@@ -55,12 +55,22 @@ $color: #007974;
 }
 .features {
   margin: 64px auto;
-  width: 400px;
+  padding: 0 16px;
   @media (min-width: 800px) {
     width: 800px;
+    >ul {
+      >li {
+        width: 50%;
+      }
+    }
   }
   @media (min-width: 1200px) {
     width: 1200px;
+    >ul {
+      >li {
+        width: 33.3333%;
+      }
+    }
   }
   >ul {
     display: flex;
