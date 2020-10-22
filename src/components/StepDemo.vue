@@ -1,22 +1,24 @@
 <template>
-  <Steps :current="1">
-    <Step>
-      <template v-slot:title>Finished</template>
-      <template v-slot:subTitle>ccc</template>
-      <template v-slot:description>
-        <span>This is a description.</span>
-      </template>
-    </Step>
-    <Step title="In Progress" sub-title="Left 00:00:08" description="This is a description." />
-    <Step title="Waiting" description="This is a description."/>
-  </Steps>
+  <div>
+    <h1>Steps 组件示例 </h1>
+    <Demo :component="Steps1Demo"></Demo>
+    <Demo :component="Steps2Demo"></Demo>
+  </div>
 </template>
-<script lang="ts">
-import Steps from '../lib/Steps.vue'
-import Step from '../lib/Step.vue'
 
-console.log(Step, 'step')
+<script lang="ts">
+import Steps1Demo from './Steps1.demo.vue'
+import Steps2Demo from './Steps2.demo.vue'
+import Demo from './Demo.vue'
 export default {
-  components: { Steps, Step }
+  components: {
+    Demo
+  },
+  setup() {
+    return {
+      Steps1Demo,
+      Steps2Demo
+    }
+  }
 }
 </script>
