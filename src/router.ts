@@ -7,6 +7,7 @@ import SwitchDemo from './components/SwitchDemo.vue'
 import ButtonDemo from './components/ButtonDemo.vue'
 import DialogDemo from './components/DialogDemo.vue'
 import TabsDemo from './components/TabsDemo.vue'
+import StepDemo from './components/StepDemo.vue'
 const history = createWebHashHistory()
 import Install from './markdown/install.md'
 import Intro from './markdown/intro.md'
@@ -24,7 +25,8 @@ export const router = createRouter({
         { path: 'switch', component: SwitchDemo as any },
         { path: 'button', component: ButtonDemo },
         { path: 'dialog', component: DialogDemo },
-        { path: 'tabs', component: TabsDemo }
+        { path: 'tabs', component: TabsDemo },
+        { path: 'steps', component: StepDemo }
       ]
     }
   ]

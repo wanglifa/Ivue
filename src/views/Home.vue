@@ -98,10 +98,13 @@ $color: #3569dc;
       }
       >h3 {
         grid-area: title;
-        font-size: 28px;
+        font-size: 18px;
+        color: #333;
       }
       >p {
-        grid-area: text
+        grid-area: text;
+        font-size: 14px;
+        color: #666;
       }
     }
   }
@@ -117,6 +120,8 @@ $color: #3569dc;
   flex-direction: column;
   h2 {
     padding: 12px 0;
+    font-size: 16px;
+    color: rgb(101 111 150);
   }
   .bg {
     position: absolute;
@@ -152,6 +157,11 @@ $color: #3569dc;
         border: 1px solid $green;
       }
     }
+  }
+}
+@media (max-width: 600px) {
+  .bg, .bg1 {
+    display: none;
   }
 }
 </style>
