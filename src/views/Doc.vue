@@ -63,7 +63,7 @@ export default {
   >.content {
     flex-grow: 1;
     padding-top: 60px;
-    padding-left: calc(20% + 10px);
+    padding-left: calc(20% + 24px);
   }
 }
 .content {
