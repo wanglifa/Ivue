@@ -1,8 +1,8 @@
 <demo>
-支持slot插槽
+垂直方向的步骤条
 </demo>
 <template>
-  <Steps :current="1">
+  <Steps :current="1" direction="vertical">
     <Step>
       <template v-slot:title>Finished</template>
       <template v-slot:subTitle>ccc</template>

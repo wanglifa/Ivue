@@ -1,15 +1,18 @@
 <template>
-  <div class="ivue3-steps">
+  <div class="ivue3-steps" :class="{'ivue3-steps-vertical': direction === 'vertical' || isPhone}" ref="stepsRef">
     <div class="ivue3-steps-list" v-for="(tag, index) in tags" :key="index" :class="[currentStatusClass(index)]">
-      <div class="ivue3-steps-icon">
-        <template v-if="current <= index">
-          {{index+1}}
-        </template>
-        <template v-else>
-          <svg>
-            <use xlink:href="#icon-finish"></use>
-          </svg>
-        </template>
+      <div class="ivue3-steps-icon-wrapper">
+        <div class="ivue3-steps-icon">
+          <template v-if="current <= index">
+            {{index+1}}
+          </template>
+          <template v-else>
+            <svg>
+              <use xlink:href="#icon-finish"></use>
+            </svg>
+          </template>
+        </div>
+        <div class="ivue3-steps-line-vertical" v-if="index !== tags.length - 1 && (direction === 'vertical' || isPhone)"></div>
       </div>
       <div class="ivue3-steps-content">
         <template v-if="tag.props">
@@ -34,10 +37,11 @@
   </div>
 </template>
 <script lang="ts">
-import { SetupContext } from 'vue'
+import { SetupContext, ref } from 'vue'
 interface Prop {
   current: number;
   size: string;
+  direction: 'horizontal' | 'vertical';
 }
 export default {
   props: {
@@ -48,11 +52,17 @@ export default {
     size: {
       type: String,
       default: 'middle'
+    },
+    direction: {
+      type: String,
+      default: 'horizontal'
     }
   },
   setup(props: Prop, context: SetupContext) {
-    const tags = context.slots.default()
-    const { current, size } = props
+    const tags = context.slots.default!()
+    const width = document.documentElement.clientWidth
+    const isPhone = ref(width < 540 ? true : false)
+    const { current, size, direction } = props
     const currentStatusClass = (index: number): string => {
       return current > index ? 'ivue3-steps-list-finish' : current < index ? 'ivue3-steps-list-wait' : 'ivue3-steps-list-progress'
     }
@@ -60,7 +70,9 @@ export default {
       tags,
       current,
       size,
-      currentStatusClass
+      currentStatusClass,
+      direction,
+      isPhone
     }
   }
 }
@@ -70,11 +82,34 @@ $blue: rgb(65, 118, 234);
 $gray: #c6c1c1;
 .ivue3-steps {
   display: flex;
+  &-vertical {
+    display: block;
+    .ivue3-steps {
+      &-line {
+        display: none;
+      }
+      &-list {
+        align-items: flex-start;
+      }
+      &-content-title-wrapper {
+        &-title {
+          line-height: 32px;
+        }
+        &-subTitle {
+          line-height: 32px;
+        }
+      }
+    }
+  }
   &-list {
     flex: 1;
     display: flex;
     align-items: center;
+    position: relative;
     &-finish {
+      .ivue3-steps-line, .ivue3-steps-line-vertical {
+        background: $blue;
+      }
       .ivue3-steps-content {
         &-title-wrapper {
           &-title {
@@ -82,21 +117,18 @@ $gray: #c6c1c1;
           }
         }
       }
-      .ivue3-steps-line {
-        background: $blue;
-      }
     }
     &-wait {
       .ivue3-steps {
+        &-line, &-line-vertical {
+          background: $gray;
+        }
         &-content {
           &-title-wrapper {
             &-title {
               color: rgba(0,0,0,.45);
             }
           }
-        }
-        &-line {
-          background: $gray;
         }
         &-icon {
           border-color: $gray;
@@ -106,6 +138,9 @@ $gray: #c6c1c1;
     }
     &-progress {
       .ivue3-steps {
+        &-line, &-line-vertical {
+          background: $gray;
+        }
         &-content {
           &-title-wrapper {
             &-title {
@@ -122,9 +157,19 @@ $gray: #c6c1c1;
     }
   }
   &-icon {
+    &-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 8px;
+      .ivue3-steps-line-vertical {
+        width: 2px;
+        height: 20px;
+        margin: 4px 0;
+      }
+    }
     width: 32px;
     height: 32px;
-    margin-right: 8px;
     font-size: 16px;
     border: 1px solid $blue;
     border-radius: 50%;

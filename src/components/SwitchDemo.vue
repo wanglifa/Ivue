@@ -3,27 +3,29 @@
     <h1>Switch 组件示例 </h1>
     <Demo :component="Switch1Demo" intro-text="通过 v-model:value 绑定一个布尔值"></Demo>
     <Demo :component="Switch2Demo" intro-text="传入 disabled 属性可以开启禁止切换"></Demo>
-    <h2>API</h2>
-    <table class="demo-table">
-      <tr>
-        <th>属性</th>
-        <th>说明</th>
-        <th>类型</th>
-        <th>默认值</th>
-      </tr>
-      <tr>
-        <td>value</td>
-        <td>按钮开启状态</td>
-        <td>boolean</td>
-        <td>false</td>
-      </tr>
-      <tr>
-        <td>disabled</td>
-        <td>是否禁用</td>
-        <td>boolean</td>
-        <td>false</td>
-      </tr>
-    </table>
+    <div class="table-wrapper">
+      <h2>API</h2>
+      <table class="demo-table">
+        <tr>
+          <th>属性</th>
+          <th>说明</th>
+          <th>类型</th>
+          <th>默认值</th>
+        </tr>
+        <tr>
+          <td>value</td>
+          <td>按钮开启状态</td>
+          <td>boolean</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td>是否禁用</td>
+          <td>boolean</td>
+          <td>false</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -77,5 +79,11 @@ export default {
       word-break: break-all;
     }
   }
+}
+h2 {
+  margin-bottom: 16px;
+}
+.table-wrapper {
+  padding-bottom: 16px;
 }
 </style>

@@ -116,6 +116,9 @@ aside {
     >.content {
       padding-left: 0;
     }
+    >.nav {
+      background: #fff;
+    }
   }
   aside {
     width: 150px;
